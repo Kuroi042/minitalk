@@ -13,14 +13,28 @@ unsigned char bitsdecoder(int *bits)
    c = (unsigned char)res;
    return c;
 }
-void sig_handler(int sig)
+
+void sig_handler(int sig, siginfo_t *siginfo, void *context)
+
 {
-    
-    static int i = 0;
+       static pid_t client_pid = 0;
+
+     static int i = 0;
     static int arr[8];
+    if (siginfo->si_pid != client_pid)
+    {
+                      printf("dsfdsfdsfdsf");
+
+       ft_bzero(arr,8);
+        client_pid = siginfo->si_pid; 
+
+    }
+  
+(void)*context;
+
     if (sig == SIGUSR1)
     {
-        arr[i++] = 1;
+        arr[i++] = 1;  
     }
     else if (sig == SIGUSR2)
     {
@@ -28,19 +42,22 @@ void sig_handler(int sig)
     }
     if (i == 8)
     {
-        //write(1,"\n",1);
         i = 0;
-        unsigned char decoded = bitsdecoder(arr);
-        write(1,&decoded,1);    
-        ft_bzero(arr, 8);
+       
+        {
+            unsigned char decoded = bitsdecoder(arr);
+            write(1, &decoded, 1);
+            ft_bzero(arr, 8);
+        }
     }
 }
 
 int main(int argc, char *argv[])
 {
-(void)**argv;
+   (void)**argv;
    struct sigaction sa;
-   sa.sa_handler = &sig_handler;
+   sa.sa_sigaction = &sig_handler;
+   sa.sa_flags = SA_SIGINFO;
    sigaction(SIGUSR1, &sa, NULL);
    sigaction(SIGUSR2, &sa, NULL);
 
