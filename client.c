@@ -38,7 +38,11 @@ int main(int argc, char **argv)
     if (argc == 3)
     {
         pid = ft_atoi(argv[1]);
-
+     if(pid < 2)
+     {
+         write(1,"pid error",9);
+        exit(0);
+     }
         send(pid, argv[2]);
         return 0;
     }

@@ -17,20 +17,19 @@ unsigned char bitsdecoder(int *bits)
 void sig_handler(int sig, siginfo_t *siginfo, void *context)
 
 {
-       static pid_t client_pid = 0;
+    (void)*context;
+       static pid_t      client_pid = 0;
 
      static int i = 0;
     static int arr[8];
-    if (siginfo->si_pid != client_pid)
-    {
-                      printf("dsfdsfdsfdsf");
-
-       ft_bzero(arr,8);
-        client_pid = siginfo->si_pid; 
-
+    if(siginfo->si_pid != client_pid)
+    { 
+        client_pid = siginfo->si_pid;
+       i = 0;    
+        ft_bzero(arr,8);
     }
   
-(void)*context;
+
 
     if (sig == SIGUSR1)
     {
@@ -61,9 +60,9 @@ int main(int argc, char *argv[])
    sigaction(SIGUSR1, &sa, NULL);
    sigaction(SIGUSR2, &sa, NULL);
 
-   int pid = getpid();
    if (argc == 1)
    {
+    int pid = getpid();
       printf("%d\n", pid);
       printf("waiting...\n");
       while (1)
