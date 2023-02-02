@@ -11,7 +11,7 @@
     {
         
         bit = 0;
-        while (bit <= 8)
+        while (bit < 8)
         {
             
 
