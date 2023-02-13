@@ -2,7 +2,6 @@ NAMEC = clients
 NAMES = servers 
 
 CC = gcc
-
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 SRC = server.c client.c 
@@ -11,21 +10,26 @@ ser = server.c
 tool = tools.c 
 
 all:
-	$(RM) $(NAMEC) 
-	$(RM) $(NAMES)
+	@$(RM) $(NAMEC) 
+	@$(RM) $(NAMES)
+	@echo "<<remove server && client >>"
 	
 $(NAME): 
-	$(CC) $(CFLAGS) $(SRC) $(tool)
+	@$(CC) $(CFLAGS) $(SRC) $(tool)
 server:
-	$(CC) $(CFLAGS) $(ser) $(tool) -o $(NAMES)
+	@$(CC) $(CFLAGS) $(ser) $(tool) -o $(NAMES)
+	@echo "<<server make succefully>>"
+
 
 client:
-	$(CC) $(CFLAGS) $(cli) $(tool) -o $(NAMEC)
-
+	@$(CC) $(CFLAGS) $(cli) $(tool) -o $(NAMEC)
+	@echo "<<client make succefully>>"
 clean:
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ)
+	@echo "<<cleaning ob succefully>>"
 
-fclean: clean
-	$(RM) $(NAME)
+fclean:
+	@$(RM) $(NAME)
+	@echo "<<cleaning ob file succefully>>"
 
 re: fclean all
