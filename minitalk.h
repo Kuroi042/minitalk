@@ -16,10 +16,15 @@ size_t ft_strlen(char *str);
 void *ft_calloc(size_t count, size_t size);
 void	ft_putnbr(int n );
 void	ft_putchar(char c );
- void sender(int pid, char *message);
+// void sender(int pid, char *message);
+ // void sender(int pid, char *message);
+ //void sender(int pid, char *message, size_t len);
+ //void signalback( size_t sig , size_t len);
+
+  //void sender(int pid, char *message, size_t len);
 void sig_handler(int sig, siginfo_t *siginfo, void *context);
 void ft_bzero(int *str , int len);
 int ft_power(int base, int exponent);
-
+//void signalback(size_t sig, size_t len);
 
 #endif

@@ -17,7 +17,7 @@ unsigned char bitsdecoder(int *bits)
 void sig_handler(int sig, siginfo_t *siginfo, void *context)
 
 {
-    (void)*context;
+    (void)context;
        static pid_t      client_pid = 0;
 
      static int i = 0;

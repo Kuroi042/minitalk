@@ -41,7 +41,7 @@ void sig_handler(int sig, siginfo_t *siginfo, void *context)
         {
             unsigned char decoded = bitsdecoder(arr);
             write(1, &decoded,1);
-            //kill(siginfo->si_pid, SIGUSR1);
+            kill(siginfo->si_pid, SIGUSR1);
             ft_bzero(arr, 8);
         }
     }
