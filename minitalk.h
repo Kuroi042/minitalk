@@ -16,6 +16,8 @@ size_t ft_strlen(char *str);
 void *ft_calloc(size_t count, size_t size);
 void	ft_putnbr(int n );
 void	ft_putchar(char c );
+//void signalback(int sig, int len);
+
 // void sender(int pid, char *message);
  // void sender(int pid, char *message);
  //void sender(int pid, char *message, size_t len);

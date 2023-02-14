@@ -21,10 +21,12 @@ void sig_handler(int sig, siginfo_t *siginfo, void *context)
     static pid_t      client_pid = 0;
     static int i = 0;
     static int arr[8];
-    if(siginfo->si_pid != client_pid)
+	if (client_pid == 0)
+		client_pid = siginfo->si_pid;
+    else if(siginfo->si_pid != client_pid)
     { 
         client_pid = siginfo->si_pid;
-       i = 0;    
+       	i = 0;    
         ft_bzero(arr,8);
     }
     if (sig == SIGUSR1)
@@ -35,15 +37,13 @@ void sig_handler(int sig, siginfo_t *siginfo, void *context)
     {
         arr[i++] = 0;
     }
-    if (i == 8)
-    {
-        i = 0;       
-        {
-            unsigned char decoded = bitsdecoder(arr);
-            write(1, &decoded,1);
-            kill(siginfo->si_pid, SIGUSR1);
-            ft_bzero(arr, 8);
-        }
+	if (i > 7)
+    {   
+		i = 0;
+		unsigned char decoded = bitsdecoder(arr);
+        write(1, &decoded,1);
+		ft_bzero(arr, 8);
+        kill(siginfo->si_pid, SIGUSR1);
     }
 }
 
