@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbouderr <mbouderr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/15 23:55:48 by mbouderr          #+#    #+#             */
+/*   Updated: 2023/02/16 00:01:07 by mbouderr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
-#include <stdio.h>
-#include <unistd.h>
+
 int	ft_atoi(char *str)
 {
 	size_t	i;
@@ -28,33 +39,19 @@ int	ft_atoi(char *str)
 	return (nbr * sign);
 }
 
-size_t ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-	int i =0 ;
-	while(str[i] != '\0')
-	{
-		i++;
-	}
-	return i;
-}
-void	*ft_calloc(size_t count, size_t size)
-{
-	char	*ptr;
-	size_t	i;
+	int	i;
 
 	i = 0;
-	ptr = malloc(size * count);
-	if (!ptr)
-		return (NULL);
-	while (i < (count * size))
+	while (str[i] != '\0')
 	{
-		ptr[i] = '\0';
 		i++;
 	}
-	return (ptr);
+	return (i);
 }
 
-void	ft_putnbr(int n )
+void	ft_putnbr(int n)
 
 {
 	long int	i;
@@ -75,27 +72,30 @@ void	ft_putnbr(int n )
 		ft_putchar(i + 48);
 	}
 }
-void ft_putchar(char c)
+
+void	ft_bzero(int *str, int len)
 {
-	write(1,&c,1);
-}
-void ft_bzero(int *str,int len)
-{
-	int i = 0;
-	if(i <len)
+	int	i;
+
+	i = 0;
+	if (i < len)
 	{
 		str[i] = '\0';
 		i++;
 	}
 }
 
-int ft_power(int base, int exponent) 
+int	ft_power(int base, int exponent)
 {
-  int result = 1;
-  int  i = 0; 
-  while (i < exponent) {
-    result *= base;
-    i++;
-  }
-  return result;
+	int	result;
+	int	i;
+
+	i = 0;
+	result = 1;
+	while (i < exponent)
+	{
+		result *= base;
+		i++;
+	}
+	return (result);
 }
