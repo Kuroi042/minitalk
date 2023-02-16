@@ -1,32 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbouderr <mbouderr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/16 22:14:43 by mbouderr          #+#    #+#             */
+/*   Updated: 2023/02/16 22:14:44 by mbouderr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINITALK_H
-#define MINITALK_H
+# define MINITALK_H
 
+# include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <strings.h>
+# include <unistd.h>
 
-
-#include <stdlib.h>
-#include <signal.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <strings.h>
-
-
-
-int ft_atoi(char *str);
-size_t ft_strlen(char *str);
-void *ft_calloc(size_t count, size_t size);
-void	ft_putnbr(int n );
-void	ft_putchar(char c );
+int		ft_atoi(char *str);
+size_t	ft_strlen(char *str);
+void	*ft_calloc(size_t count, size_t size);
+void	ft_putnbr(int n);
+void	ft_putchar(char c);
 //void signalback(int sig, int len);
 
 // void sender(int pid, char *message);
- // void sender(int pid, char *message);
- //void sender(int pid, char *message, size_t len);
- //void signalback( size_t sig , size_t len);
+// void sender(int pid, char *message);
+//void sender(int pid, char *message, size_t len);
+//void signalback( size_t sig , size_t len);
 
-  //void sender(int pid, char *message, size_t len);
-void sig_handler(int sig, siginfo_t *siginfo, void *context);
-void ft_bzero(int *str , int len);
-int ft_power(int base, int exponent);
+//void sender(int pid, char *message, size_t len);
+void	sig_handler(int sig, siginfo_t *siginfo, void *context);
+void	ft_bzero(int *str, int len);
+int		ft_power(int base, int exponent);
 //void signalback(size_t sig, size_t len);
 
 #endif

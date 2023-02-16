@@ -6,7 +6,7 @@
 /*   By: mbouderr <mbouderr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:55:48 by mbouderr          #+#    #+#             */
-/*   Updated: 2023/02/16 00:01:07 by mbouderr         ###   ########.fr       */
+/*   Updated: 2023/02/16 22:31:52 by mbouderr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ void	ft_putnbr(int n)
 	{
 		ft_putchar(i + 48);
 	}
+}
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
 }
 
 void	ft_bzero(int *str, int len)

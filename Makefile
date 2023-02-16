@@ -1,4 +1,3 @@
-#NAMEC = client
 NAMES = server
 NAMEC = client
 NAMEEC = client_bonus
@@ -59,7 +58,7 @@ cleanbonus:
 fcleanbonus : clean bonus
 	@$(RM) $(NAMEEC) $(NAMEES)
 	@echo "<<cleaning executable bonus succefully>>"
-rebonus: fcleanbonus bonus
+
 
 ##BONUS##################################################
 ##BONUS###############################################

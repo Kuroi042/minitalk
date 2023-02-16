@@ -6,11 +6,13 @@
 /*   By: mbouderr <mbouderr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:55:40 by mbouderr          #+#    #+#             */
-/*   Updated: 2023/02/15 23:38:30 by mbouderr         ###   ########.fr       */
+/*   Updated: 2023/02/16 22:27:22 by mbouderr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+static pid_t	g_client_pid = 0;
 
 unsigned char	bitsdecoder(int *bits)
 {
@@ -29,16 +31,15 @@ unsigned char	bitsdecoder(int *bits)
 	return (c);
 }
 
-static void	check_client(int *arr, siginfo_t *siginfo, int *i,
-		pid_t *client_pid)
+static void	check_client(int *arr, siginfo_t *siginfo, int *i)
 {
-	if (*client_pid == 0)
-		*client_pid = siginfo->si_pid;
-	else if (siginfo->si_pid != *client_pid)
+	if (g_client_pid == 0)
+		g_client_pid = siginfo->si_pid;
+	else if (siginfo->si_pid != g_client_pid)
 	{
 		*i = 0;
 		ft_bzero(arr, 8);
-		*client_pid = siginfo->si_pid;
+		g_client_pid = siginfo->si_pid;
 	}
 }
 
@@ -51,7 +52,7 @@ void	sig_handler(int sig, siginfo_t *siginfo, void *context)
 
 	client_pid = 0;
 	(void)*context;
-	check_client(arr, siginfo, &i, &client_pid);
+	check_client(arr, siginfo, &i);
 	if (sig == SIGUSR1)
 		arr[i++] = 1;
 	else if (sig == SIGUSR2)
