@@ -6,13 +6,25 @@
 /*   By: mbouderr <mbouderr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:19:54 by mbouderr          #+#    #+#             */
-/*   Updated: 2023/02/15 21:58:32 by mbouderr         ###   ########.fr       */
+/*   Updated: 2023/02/22 01:47:11 by mbouderr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
 size_t		g_incr = 0;
+
+size_t	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
 
 void	signalback(int sig)
 {
@@ -43,10 +55,10 @@ static void	sender(int pid, char *message, size_t len)
 		i++;
 	}
 	if (g_incr == len)
-		write(1, "<<yes>>", 7);
+		write(1, "<<yes recieved>>", 16);
 	exit(0);
 	if (g_incr != len)
-		write(1, "<<no>>", 6);
+		write(1, "<<sadge>>", 9);
 	exit(1);
 }
 
@@ -57,13 +69,13 @@ int	main(int argc, char **argv)
 	struct sigaction	sa;
 
 	sa.sa_handler = signalback;
-	sa.sa_flags = 0;
+	sa.sa_flags = 1;
 	if (argc == 3)
 	{
 		pid = ft_atoi(argv[1]);
 		if (pid < 2)
 		{
-			write(1, "pid is not valid :( ", 22);
+			write(1, "pid is not valid :( ", 20);
 			exit(0);
 		}
 		len = ft_strlen(argv[2]);

@@ -6,7 +6,7 @@
 /*   By: mbouderr <mbouderr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:55:40 by mbouderr          #+#    #+#             */
-/*   Updated: 2023/02/16 22:27:22 by mbouderr         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:00:50 by mbouderr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,9 @@ int	main(int argc, char *argv[])
 	if (argc == 1)
 	{
 		pid = getpid();
-		printf("%d\n", pid);
-		printf("waiting...\n");
+		ft_putnbr(pid);
+		write(1, "\n", 1);
+		write(1, "waiting...\n", 11);
 		while (1)
 		{
 			pause();

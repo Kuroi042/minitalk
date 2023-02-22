@@ -6,26 +6,26 @@
 /*   By: mbouderr <mbouderr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:49 by mbouderr          #+#    #+#             */
-/*   Updated: 2023/02/16 22:17:26 by mbouderr         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:16:12 by mbouderr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static pid_t	g_client_pid = 0;
+int				g_client_pid = 0;
 
-unsigned char	bitsdecoder(int *bits)
+unsigned char	bitsdecoder(int *bit)
 {
 	unsigned char	c;
 	int				res;
-	int				j;
+	int				exponent;
 
 	res = 0;
-	j = 7;
-	while (j >= 0)
+	exponent = 7;
+	while (exponent >= 0)
 	{
-		res += (bits[j] * ft_power(2, j));
-		j--;
+		res += (bit[exponent] * ft_power(2, exponent));
+		exponent--;
 	}
 	c = (unsigned char)res;
 	return (c);
@@ -34,14 +34,15 @@ unsigned char	bitsdecoder(int *bits)
 static void	check_client(int *arr, siginfo_t *siginfo, int *i)
 {
 	if (g_client_pid == 0)
+	{
 		g_client_pid = siginfo->si_pid;
+	}
 	else if (g_client_pid != siginfo->si_pid)
 	{
 		*i = 0;
 		ft_bzero(arr, 8);
 		g_client_pid = siginfo->si_pid;
 	}
-	return ;
 }
 
 void	sig_handler(int sig, siginfo_t *siginfo, void *context)
@@ -78,8 +79,9 @@ int	main(int argc, char *argv[])
 	if (argc == 1)
 	{
 		pid = getpid();
-		printf("%d\n", pid);
-		printf("waiting...\n");
+		ft_putnbr(pid);
+		write(1, "\n", 1);
+		write(1, "waiting...\n", 11);
 		while (1)
 		{
 			pause();

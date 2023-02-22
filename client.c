@@ -6,7 +6,7 @@
 /*   By: mbouderr <mbouderr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:39:16 by mbouderr          #+#    #+#             */
-/*   Updated: 2023/02/15 18:39:47 by mbouderr         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:42:24 by mbouderr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		printf("bad format");
+		write(1, "abad format\n", 12);
 		exit(0);
 	}
 	return (0);

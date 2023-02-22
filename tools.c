@@ -6,7 +6,7 @@
 /*   By: mbouderr <mbouderr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:55:48 by mbouderr          #+#    #+#             */
-/*   Updated: 2023/02/16 22:31:52 by mbouderr         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:12:27 by mbouderr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,9 @@ int	ft_atoi(char *str)
 	return (nbr * sign);
 }
 
-size_t	ft_strlen(char *str)
+void	ft_putchar(char c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+	write(1, &c, 1);
 }
 
 void	ft_putnbr(int n)
@@ -73,11 +66,6 @@ void	ft_putnbr(int n)
 	}
 }
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
 void	ft_bzero(int *str, int len)
 {
 	int	i;
@@ -90,17 +78,17 @@ void	ft_bzero(int *str, int len)
 	}
 }
 
-int	ft_power(int base, int exponent)
+int	ft_power(int labase, int exp)
 {
-	int	result;
+	int	resulta;
 	int	i;
 
 	i = 0;
-	result = 1;
-	while (i < exponent)
+	resulta = 1;
+	while (i < exp)
 	{
-		result *= base;
+		resulta  *= labase;
 		i++;
 	}
-	return (result);
+	return (resulta );
 }
